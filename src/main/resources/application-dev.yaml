@@ -1,0 +1,10 @@
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+        web: TRACE
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

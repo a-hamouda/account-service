@@ -14,6 +14,7 @@ class DependencyRuleTest {
     private static final String CORE_PACKAGE = "%s.core..".formatted(ROOT_PACKAGE);
     private static final String JAVA_STANDARD_PACKAGE = "java..";
     private static final String JAVA_EXTENSION_PACKAGE = "javax..";
+    private static final String JAKARTA_VALIDATION_PACKAGE = "jakarta.validation..";
     private final JavaClasses allClasses = new ClassFileImporter().withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS).importPackages(ROOT_PACKAGE);
 
     @Test
@@ -21,7 +22,7 @@ class DependencyRuleTest {
     void core() {
         final var rule = ArchRuleDefinition.classes().that().resideInAPackage(CORE_PACKAGE).should()
                                            .onlyDependOnClassesThat().resideInAnyPackage(CORE_PACKAGE,
-                        JAVA_STANDARD_PACKAGE, JAVA_EXTENSION_PACKAGE);
+                        JAVA_STANDARD_PACKAGE, JAVA_EXTENSION_PACKAGE, JAKARTA_VALIDATION_PACKAGE);
         rule.check(allClasses);
     }
 }
